@@ -30,9 +30,7 @@ class Main extends React.Component {
                     </ul>
                 </aside>
                 <section>
-                    {this.state.selectedCategory === 'Elections' && <div>Результаты выборов</div>}
-                    {this.state.selectedCategory === 'Petitions' && <div>Результаты петиций</div>}
-                    {this.state.selectedCategory === 'Surveys' && <div>Результаты опросов</div>}
+                    
                 </section>
             </main>
         )    

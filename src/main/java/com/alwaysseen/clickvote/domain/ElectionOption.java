@@ -29,11 +29,13 @@ public class ElectionOption {
     private String longDescription;
     private String photoUrl; // Photo URL of the election candidate
 
+    private Integer votesCount;
+
     @ManyToOne
     @JoinColumn(name="election_id", nullable=false)
     private Election election;
 
-    public ElectionOption(Long id, String firstName, String lastName, String middleName, LocalDate dateOfBirth, String address, String position, String shortDescription, String longDescription, String photoUrl, Election election) {
+    public ElectionOption(Long id, String firstName, String lastName, String middleName, LocalDate dateOfBirth, String address, String position, String shortDescription, String longDescription, String photoUrl, Integer votesCount, Election election) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,10 +46,11 @@ public class ElectionOption {
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.photoUrl = photoUrl;
+        this.votesCount = votesCount;
         this.election = election;
     }
 
-    public ElectionOption(String firstName, String lastName, String middleName, LocalDate dateOfBirth, String address, String position, String shortDescription, String longDescription, String photoUrl, Election election) {
+    public ElectionOption(String firstName, String lastName, String middleName, LocalDate dateOfBirth, String address, String position, String shortDescription, String longDescription, String photoUrl, Integer votesCount, Election election) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
@@ -57,6 +60,7 @@ public class ElectionOption {
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.photoUrl = photoUrl;
+        this.votesCount = votesCount;
         this.election = election;
     }
 
@@ -141,6 +145,14 @@ public class ElectionOption {
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    public Integer getVotesCount() {
+        return votesCount;
+    }
+
+    public void setVotesCount(Integer votesCount) {
+        this.votesCount = votesCount;
     }
 
     public Election getElection() {

@@ -25,25 +25,29 @@ public class Election {
 
     private Integer duration;
 
-    public Election() {
-    }
+    private boolean status;
 
     @OneToMany(mappedBy="election")
     private List<ElectionOption> options;
 
-    public Election(Long id, String title, LocalDate startDate, Integer duration, List<ElectionOption> options) {
+    public Election(Long id, String title, LocalDate startDate, Integer duration, boolean status, List<ElectionOption> options) {
         this.id = id;
         this.title = title;
         this.startDate = startDate;
         this.duration = duration;
+        this.status = status;
         this.options = options;
     }
 
-    public Election(String title, LocalDate startDate, Integer duration, List<ElectionOption> options) {
+    public Election(String title, LocalDate startDate, Integer duration, boolean status, List<ElectionOption> options) {
         this.title = title;
         this.startDate = startDate;
         this.duration = duration;
+        this.status = status;
         this.options = options;
+    }
+
+    public Election() {
     }
 
     public Long getId() {
@@ -76,6 +80,14 @@ public class Election {
 
     public void setDuration(Integer duration) {
         this.duration = duration;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public List<ElectionOption> getOptions() {

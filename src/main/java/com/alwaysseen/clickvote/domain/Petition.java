@@ -25,21 +25,29 @@ public class Petition {
     private LocalDate startDate;
     private Integer duration;
 
-    public Petition(Long id, String title, String shortDescription, String longDescription, LocalDate startDate, Integer duration) {
+    private Integer votesCount;
+
+    private boolean status;
+
+    public Petition(Long id, String title, String shortDescription, String longDescription, LocalDate startDate, Integer duration, Integer votesCount, boolean status) {
         this.id = id;
         this.title = title;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.startDate = startDate;
         this.duration = duration;
+        this.votesCount = votesCount;
+        this.status = status;
     }
 
-    public Petition(String title, String shortDescription, String longDescription, LocalDate startDate, Integer duration) {
+    public Petition(String title, String shortDescription, String longDescription, LocalDate startDate, Integer duration, Integer votesCount, boolean status) {
         this.title = title;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.startDate = startDate;
         this.duration = duration;
+        this.votesCount = votesCount;
+        this.status = status;
     }
 
     public Petition() {
@@ -91,5 +99,21 @@ public class Petition {
 
     public void setDuration(Integer duration) {
         this.duration = duration;
+    }
+
+    public Integer getVotesCount() {
+        return votesCount;
+    }
+
+    public void setVotesCount(Integer votesCount) {
+        this.votesCount = votesCount;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

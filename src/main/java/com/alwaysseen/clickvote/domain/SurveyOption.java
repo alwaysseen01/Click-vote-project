@@ -19,18 +19,22 @@ public class SurveyOption {
 
     private String text;
 
+    private Integer votesCount;
+
     @ManyToOne
     @JoinColumn(name="survey_id", nullable=false)
     private Survey survey;
 
-    public SurveyOption(Long id, String text, Survey survey) {
+    public SurveyOption(Long id, String text, Integer votesCount, Survey survey) {
         this.id = id;
         this.text = text;
+        this.votesCount = votesCount;
         this.survey = survey;
     }
 
-    public SurveyOption(String text, Survey survey) {
+    public SurveyOption(String text, Integer votesCount, Survey survey) {
         this.text = text;
+        this.votesCount = votesCount;
         this.survey = survey;
     }
 
@@ -51,6 +55,14 @@ public class SurveyOption {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Integer getVotesCount() {
+        return votesCount;
+    }
+
+    public void setVotesCount(Integer votesCount) {
+        this.votesCount = votesCount;
     }
 
     public Survey getSurvey() {
