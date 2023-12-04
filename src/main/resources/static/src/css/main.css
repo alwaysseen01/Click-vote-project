@@ -1,0 +1,72 @@
+main {
+    width: auto;
+    flex-grow: 1;
+    padding: 20px 30px 30px 30px;
+    display: flex;
+    justify-content: space-between;
+    background-color: inherit;
+    grid-gap: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    margin: 0;
+}
+
+aside {
+    width: 220px;
+    height: 100%;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainNavMenuBox {
+    max-width: 220px;
+    width: max-content;
+    padding: 0px 35px;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 20px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.mainNavMenuElement {
+    list-style: none;
+    padding: 15px 25px;
+    background-color: inherit;
+    border: 1px solid transparent;
+    color: #000000;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.mainNavMenuElement:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    border: 1px solid #000000;
+}
+
+.mainNavMenuElement.selected {
+    background-color: #0077B6;
+    color: #FFFFFF;
+  }
+
+section {
+    flex-grow: 1;
+    height: 110%;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

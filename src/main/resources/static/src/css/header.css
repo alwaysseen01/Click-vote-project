@@ -1,0 +1,75 @@
+header {
+    width: auto;
+    height: max-content;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    background-color: inherit;
+}
+
+.logoImg {
+    width: 220px;
+    height: 100px;
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    margin: 0;
+}
+
+.headerNavMenuBox {
+    padding: 30px 0px;
+    display: flex;
+    grid-gap: 20px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.headerNavMenuElement {
+    list-style: none;
+    padding: 15px 25px;
+    background-color: #0077B6;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.headerNavMenuElement:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.headerNavMenuElement.selected {
+    border: 2px solid #000000;
+}
+
+.profileBox {
+    width: 40px;
+    height: 41px;
+    padding: 5px;
+    background-color: #0077B6;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.profileBox:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.profileBox.selected {
+    border: 2px solid #000000;
+}
+
+.profileImg {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    transition: all 0.2s ease-in-out;
+}
