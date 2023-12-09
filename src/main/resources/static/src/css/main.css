@@ -1,4 +1,5 @@
 main {
+    max-height: 75vh;
     width: auto;
     flex-grow: 1;
     padding: 20px 30px 30px 30px;
@@ -63,10 +64,9 @@ aside {
 section {
     flex-grow: 1;
     height: 110%;
-    border: 1px solid #000000;
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
