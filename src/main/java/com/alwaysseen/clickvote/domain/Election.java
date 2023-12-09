@@ -1,5 +1,6 @@
 package com.alwaysseen.clickvote.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -23,27 +24,24 @@ public class Election {
     private String title;
     private LocalDate startDate;
 
-    private Integer duration;
-
-    private boolean status;
+    private Integer durationDays; // Duration is expected to be receives as days. Example: received 10 --> 10 days of duration
 
     @OneToMany(mappedBy="election")
+    @JsonManagedReference
     private List<ElectionOption> options;
 
-    public Election(Long id, String title, LocalDate startDate, Integer duration, boolean status, List<ElectionOption> options) {
+    public Election(Long id, String title, LocalDate startDate, Integer durationDays, List<ElectionOption> options) {
         this.id = id;
         this.title = title;
         this.startDate = startDate;
-        this.duration = duration;
-        this.status = status;
+        this.durationDays = durationDays;
         this.options = options;
     }
 
-    public Election(String title, LocalDate startDate, Integer duration, boolean status, List<ElectionOption> options) {
+    public Election(String title, LocalDate startDate, Integer durationDays, List<ElectionOption> options) {
         this.title = title;
         this.startDate = startDate;
-        this.duration = duration;
-        this.status = status;
+        this.durationDays = durationDays;
         this.options = options;
     }
 
@@ -74,20 +72,12 @@ public class Election {
         this.startDate = startDate;
     }
 
-    public Integer getDuration() {
-        return duration;
+    public Integer getDurationDays() {
+        return durationDays;
     }
 
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setDurationDays(Integer durationDays) {
+        this.durationDays = durationDays;
     }
 
     public List<ElectionOption> getOptions() {

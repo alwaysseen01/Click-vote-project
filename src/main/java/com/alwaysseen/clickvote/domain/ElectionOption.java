@@ -1,5 +1,6 @@
 package com.alwaysseen.clickvote.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -33,6 +34,7 @@ public class ElectionOption {
 
     @ManyToOne
     @JoinColumn(name="election_id", nullable=false)
+    @JsonBackReference
     private Election election;
 
     public ElectionOption(Long id, String firstName, String lastName, String middleName, LocalDate dateOfBirth, String address, String position, String shortDescription, String longDescription, String photoUrl, Integer votesCount, Election election) {

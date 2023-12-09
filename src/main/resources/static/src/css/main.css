@@ -58,7 +58,7 @@ aside {
 .mainNavMenuElement.selected {
     background-color: #0077B6;
     color: #FFFFFF;
-  }
+}
 
 section {
     flex-grow: 1;

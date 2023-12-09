@@ -30,7 +30,7 @@ class Main extends React.Component {
                     </ul>
                 </aside>
                 <section>
-                    
+
                 </section>
             </main>
         )    
