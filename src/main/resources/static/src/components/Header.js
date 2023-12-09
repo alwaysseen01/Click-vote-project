@@ -15,6 +15,7 @@ class Header extends React.Component {
 
     handlePageChange = (page) => {
         this.setState({ selectedPage: page });
+        this.props.onPageChange(page);
     };
 
     render() {
@@ -23,15 +24,9 @@ class Header extends React.Component {
                 <img className='logoImg' src={logoImg}></img>
                 <nav>
                     <ul className='headerNavMenuBox'>
-                        <li className={`headerNavMenuElement ${this.state.selectedPage === 'Main page' ? 'selected' : ''}`} onClick={() => this.handlePageChange('Main page')}> 
-                            <Link to="/main"> Main page </Link> 
-                        </li>
-                        <li className={`headerNavMenuElement ${this.state.selectedPage === 'Results' ? 'selected' : ''}`} onClick={() => this.handlePageChange('Results')}> 
-                            <Link to="/results"> Results </Link> 
-                        </li>
-                        <li className={`headerNavMenuElement ${this.state.selectedPage === 'About us' ? 'selected' : ''}`} onClick={() => this.handlePageChange('About us')}> 
-                            <Link to="/about"> About us </Link> 
-                        </li>
+                        <Link to="/main"> <li className={`headerNavMenuElement ${this.state.selectedPage === 'Main page' ? 'selected' : ''}`} onClick={() => this.handlePageChange('Main page')}> Main page </li> </Link> 
+                        <Link to="/results"> <li className={`headerNavMenuElement ${this.state.selectedPage === 'Results' ? 'selected' : ''}`} onClick={() => this.handlePageChange('Results')}> Results </li> </Link> 
+                        <Link to="/about_us"> <li className={`headerNavMenuElement ${this.state.selectedPage === 'About us' ? 'selected' : ''}`} onClick={() => this.handlePageChange('About us')}> About us </li> </Link> 
                         <div className={`profileBox ${this.state.selectedPage === 'Profile' ? 'selected' : ''}`} onClick={() => this.handlePageChange('Profile')}>
                             <img className='profileImg' src={profileImg}></img>
                         </div>

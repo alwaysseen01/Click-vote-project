@@ -1,6 +1,10 @@
 import React from 'react'
 import "../css/main.css"
 import Election from "./Election"
+import Petition from "./Petition"
+import Survey from "./Survey"
+import ElectionResult from "./ElectionResult"
+import PetitionResult from "./PetitionResult"
 
 class Main extends React.Component {
     constructor(props) {
@@ -15,18 +19,19 @@ class Main extends React.Component {
     };
 
     render() {
+        console.log("STATE (PAGE): " + this.props.selectedPage);
         let content;
         if (this.props.selectedPage === 'Main page' && this.state.selectedCategory === 'Elections') {
             content = <Election />;
+        } else if (this.props.selectedPage === 'Main page' && this.state.selectedCategory === 'Petitions') {
+            content = <Petition />;
+        } else if (this.props.selectedPage === 'Main page' && this.state.selectedCategory === 'Surveys') {
+            content = <Survey />;
+        } else if(this.props.selectedPage === 'Results' && this.state.selectedCategory === 'Elections') {
+            content = <ElectionResult />;
+        } else if (this.props.selectedPage === 'Results' && this.state.selectedCategory === 'Petitions') {
+            content = <PetitionResult />;
         }
-        // else if (this.props.selectedPage === 'Main page' && this.state.selectedCategory === 'Petitions') {
-        //     content = <Petition />;
-        // } else if (this.props.selectedPage === 'Main page' && this.state.selectedCategory === 'Surveys') {
-        //     content = <Survey />;
-        // } else if (this.props.selectedPage === 'Results' && this.state.selectedCategory === 'Elections') {
-        //     content = <ElectionResult />;
-        // } else if (this.props.selectedPage === 'Results' && this.state.selectedCategory === 'Petitions') {
-        //     content = <PetitionResult />;
         // } else if (this.props.selectedPage === 'Results' && this.state.selectedCategory === 'Surveys') {
         //     content = <SurveyResult />;
         // }

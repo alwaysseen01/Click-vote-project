@@ -6,7 +6,7 @@ const Election = () => {
   const [elections, setElections] = useState(null);
 
   useEffect(() => {
-    let url = "http://localhost:8081/elections"
+    let url = "http://localhost:8081/elections/active"
     console.log("FETCH URL: " + url);
     fetch(url)
       .then(response => {
@@ -39,7 +39,7 @@ const Election = () => {
                 <img className='electionOptionImg' src={electionOption.photoUrl}></img>
                 <div className='electionOptionInfoBox'>
                   <div className='electionOptionNameAndYOBox'>
-                    <h1 className='electionOptionName'> {electionOption.firstName} {electionOption.secondName} </h1>
+                    <h1 className='electionOptionName'> {electionOption.firstName} {electionOption.lastName} {electionOption.middleName} </h1>
                     <p className='electionOptionYO'> {electionOption.dateOfBirth} </p>
                   </div>
                   <p className='electionOptionShortDescription'>

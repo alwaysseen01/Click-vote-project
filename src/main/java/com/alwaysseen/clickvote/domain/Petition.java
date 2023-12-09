@@ -23,31 +23,27 @@ public class Petition {
     private String shortDescription;
     private String longDescription;
     private LocalDate startDate;
-    private Integer duration;
+    private Integer durationDays;
 
     private Integer votesCount;
 
-    private boolean status;
-
-    public Petition(Long id, String title, String shortDescription, String longDescription, LocalDate startDate, Integer duration, Integer votesCount, boolean status) {
+    public Petition(Long id, String title, String shortDescription, String longDescription, LocalDate startDate, Integer durationDays, Integer votesCount) {
         this.id = id;
         this.title = title;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.startDate = startDate;
-        this.duration = duration;
+        this.durationDays = durationDays;
         this.votesCount = votesCount;
-        this.status = status;
     }
 
-    public Petition(String title, String shortDescription, String longDescription, LocalDate startDate, Integer duration, Integer votesCount, boolean status) {
+    public Petition(String title, String shortDescription, String longDescription, LocalDate startDate, Integer durationDays, Integer votesCount) {
         this.title = title;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.startDate = startDate;
-        this.duration = duration;
+        this.durationDays = durationDays;
         this.votesCount = votesCount;
-        this.status = status;
     }
 
     public Petition() {
@@ -93,12 +89,12 @@ public class Petition {
         this.startDate = startDate;
     }
 
-    public Integer getDuration() {
-        return duration;
+    public Integer getDurationDays() {
+        return durationDays;
     }
 
-    public void setDuration(Integer duration) {
-        this.duration = duration;
+    public void setDurationDays(Integer duration) {
+        this.durationDays = duration;
     }
 
     public Integer getVotesCount() {
@@ -107,13 +103,5 @@ public class Petition {
 
     public void setVotesCount(Integer votesCount) {
         this.votesCount = votesCount;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 }

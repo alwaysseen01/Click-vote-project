@@ -1,5 +1,6 @@
 package com.alwaysseen.clickvote.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -22,28 +23,25 @@ public class Survey {
 
     private String title;
     private LocalDate startDate;
-    private Integer duration;
-
-    private boolean status;
+    private Integer durationDays;
 
     @OneToMany(mappedBy="survey")
+    @JsonManagedReference
     private List<SurveyOption> options;
 
-    public Survey(Long id, String title, LocalDate startDate, Integer duration, boolean status, List<SurveyOption> options) {
+    public Survey(Long id, String title, LocalDate startDate, Integer durationDays,List<SurveyOption> options) {
         this.id = id;
         this.title = title;
         this.startDate = startDate;
-        this.duration = duration;
+        this.durationDays = durationDays;
         this.options = options;
-        this.status = status;
     }
 
-    public Survey(String title, LocalDate startDate, Integer duration, boolean status, List<SurveyOption> options) {
+    public Survey(String title, LocalDate startDate, Integer durationDays, List<SurveyOption> options) {
         this.title = title;
         this.startDate = startDate;
-        this.duration = duration;
+        this.durationDays = durationDays;
         this.options = options;
-        this.status = status;
     }
 
     public Survey() {
@@ -73,12 +71,12 @@ public class Survey {
         this.startDate = startDate;
     }
 
-    public Integer getDuration() {
-        return duration;
+    public Integer getDurationDays() {
+        return durationDays;
     }
 
-    public void setDuration(Integer duration) {
-        this.duration = duration;
+    public void setDurationDays(Integer durationDays) {
+        this.durationDays = durationDays;
     }
 
     public List<SurveyOption> getOptions() {
@@ -89,11 +87,4 @@ public class Survey {
         this.options = options;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
 }

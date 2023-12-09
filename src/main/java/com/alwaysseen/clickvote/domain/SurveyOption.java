@@ -1,5 +1,6 @@
 package com.alwaysseen.clickvote.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -23,6 +24,7 @@ public class SurveyOption {
 
     @ManyToOne
     @JoinColumn(name="survey_id", nullable=false)
+    @JsonBackReference
     private Survey survey;
 
     public SurveyOption(Long id, String text, Integer votesCount, Survey survey) {
