@@ -32,7 +32,7 @@ const ElectionResult = () => {
 
             Promise.all(percentagePromises)
                 .then(percentagesData => {
-                    setPercentages(percentagesData);
+                    setPercentages(percentagesData.flat());
                     console.log("PERCENTAGES DATA: " + JSON.stringify(percentagesData, null, 2))
                 })
                 .catch(error => console.error('Error:', error));
@@ -50,9 +50,7 @@ const ElectionResult = () => {
                 <div className='electionResult' key={result.id}>
                     <h1>{result.title}</h1>
                     {result.options && result.options.map(electionOption => {
-                        const flatPercentages = percentages.flat();
-                        console.log("FLAT PERCENTAGES: " + JSON.stringify(flatPercentages, null, 2));
-                        const percentage = flatPercentages.find(p => p.optionId === electionOption.id);
+                        let percentage = percentages.find(p => p.optionId === electionOption.id);
                         return (
                             <div className={`electonOptionBox ${winner && winner.some(w => w.id === electionOption.id) ? 'winner' : ''}`} key={electionOption.id}>
                                 <h1 className={`electionOptionPercentageBox ${winner && winner.some(w => w.id === electionOption.id) ? 'winner' : ''}`}>{percentage ? Number(percentage.percentage).toFixed(2) : 0}%</h1>

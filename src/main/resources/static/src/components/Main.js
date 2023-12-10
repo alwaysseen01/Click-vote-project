@@ -5,6 +5,7 @@ import Petition from "./Petition"
 import Survey from "./Survey"
 import ElectionResult from "./ElectionResult"
 import PetitionResult from "./PetitionResult"
+import SurveyResult from "./SurveyResult"
 
 class Main extends React.Component {
     constructor(props) {
@@ -31,10 +32,10 @@ class Main extends React.Component {
             content = <ElectionResult />;
         } else if (this.props.selectedPage === 'Results' && this.state.selectedCategory === 'Petitions') {
             content = <PetitionResult />;
+        } else if (this.props.selectedPage === 'Results' && this.state.selectedCategory === 'Surveys') {
+            content = <SurveyResult />;
         }
-        // } else if (this.props.selectedPage === 'Results' && this.state.selectedCategory === 'Surveys') {
-        //     content = <SurveyResult />;
-        // }
+        
         else {
             content = <div></div>;
         }

@@ -74,6 +74,7 @@ public class ElectionService {
             results.add(result);
         }
         return results;
+        // Example output -> [{'1': 51}, {'2': 49}]
     }
 
 

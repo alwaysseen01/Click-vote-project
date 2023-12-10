@@ -1,0 +1,54 @@
+.surveyResultsBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.survey {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    color: #000000;
+    margin-top: 30px;
+}
+
+.survey:first-child {
+    margin-top: 0;
+}
+
+.surveyTitle {
+    margin: 0;
+}
+
+.surveyOptionsBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.surveyOption {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.surveyOptionVotesBox {
+    height: max-content;
+    width:max-content;
+    padding: 0.8vw 2.5vh;
+    border: 5px solid #0077B6;
+    border-radius: 5px;
+    align-self: center;
+    margin-left: 20px;
+}
+
+.surveyOptionVotesBox.winner {
+    color: green;
+}
+
+.surveyOptionTitle {
+    vertical-align: middle;
+    text-align: center;
+}
