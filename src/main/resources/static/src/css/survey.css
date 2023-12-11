@@ -1,10 +1,11 @@
 .surveysBox {
     width: 100%;
+    min-height: 71vh;
     height: max-content;
     color: #000000;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     margin-bottom: 50px;
 }
@@ -12,7 +13,7 @@
 .survey {
     padding: 20px 0px 20px 20px;
     border-radius: 10px;
-    background-color: #FFFFFF;
+    background-color: #64b5f6;
     margin-top: 30px;
     margin-right: 10px;
     border: 1px solid #000000;
@@ -37,13 +38,16 @@
 }
 
 .surveysOptionsButtonsBox {
-    width: 95%;
+    width: max-content;
+    max-width: 95%;
     display: flex;
     flex-direction: row;
     gap: 20px;
     flex-wrap: wrap;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
+    background-color: #CAF0F8;
+    border-radius: 10px;
 }
 
 .surveyOptionButton {

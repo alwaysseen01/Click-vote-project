@@ -1,5 +1,7 @@
 .petitionsResultBox {
     width: 100%;
+    min-height: 71vh;
+    height: max-content;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -15,10 +17,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    background-color: #64b5f6;
+    border-radius: 10px;
+    border: 1px solid #000000;
 }
 
 .petitionResult.sent {
-    border: 1px solid #000000;
     border-radius: 5px;
 }
 
@@ -29,6 +33,7 @@
     border: 5px solid #0077B6;
     border-radius: 5px;
     align-self: center;
+    background-color: #CAF0F8;
 }
 
 .petitionResultVotesBox.sent {
@@ -36,13 +41,17 @@
 }
 
 .petitionResultInfoBox {
+    padding: 20px;
+    border-radius: 10px;
     width: max-content;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background-color: #CAF0F8;
 }
 
 .petitionOptionButtonsBox {
+    height: max-content;
     width: max-content;
     display: flex;
     flex-direction: column;
@@ -51,4 +60,7 @@
     align-items: center;
     padding: 10px;
     margin-left: auto;
+    margin-top: auto;
+    background-color: #CAF0F8;
+    border-radius: 5px;
 }

@@ -48,7 +48,7 @@ const ElectionResult = () => {
         <div className='electionsBox'>
             {electionResults && electionResults.map((result) => (
                 <div className='electionResult' key={result.id}>
-                    <h1>{result.title}</h1>
+                    <h1 className='electionResultTitle'>{result.title}</h1>
                     {result.options && result.options.map(electionOption => {
                         let percentage = percentages.find(p => p.optionId === electionOption.id);
                         return (

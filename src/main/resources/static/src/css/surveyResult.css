@@ -1,5 +1,7 @@
 .surveyResultsBox {
-    width: 100%;
+    min-height: 71vh;
+    height: max-content;
+    width: 90%;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -23,9 +25,14 @@
 }
 
 .surveyOptionsBox {
+    width: max-content;
+    max-width: 95%;
+    padding: 20px 250px 20px 40px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background-color: #CAF0F8;
 }
 
 .surveyOption {
@@ -41,7 +48,6 @@
     border: 5px solid #0077B6;
     border-radius: 5px;
     align-self: center;
-    margin-left: 20px;
 }
 
 .surveyOptionVotesBox.winner {

@@ -1,5 +1,6 @@
 .electionsBox {
     width: 100%;
+    min-height: 71vh;
     height: max-content;
     color: #000000;
     display: flex;
@@ -12,9 +13,10 @@
 .election {
     padding: 20px 20px 20px 20px;
     border-radius: 10px;
-    background-color: #FFFFFF;
+    background-color: #64b5f6;
     margin-top: 30px;
     margin-right: 10px;
+    border: 1px solid #000000;
 }
 
 .election:first-child {
@@ -42,12 +44,14 @@
     gap: 20px;
     border: 1px solid #000000;
     border-radius: 5px;
+    background-color: #CAF0F8;
 }
 
 .electionOption img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .electionOptionInfoBox {
