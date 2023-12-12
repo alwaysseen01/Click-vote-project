@@ -14,6 +14,10 @@ const PetitionResult = () => {
         .catch(error => console.error('Error:', error));
     }, []);
 
+    if (!petitionResults) {
+        return <div className='loadingBox'>Loading...</div>;
+    }
+
     return (
         <div className='petitionsResultBox'>
             {petitionResults && petitionResults.map(petitionResult => (

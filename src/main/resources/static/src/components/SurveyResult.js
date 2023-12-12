@@ -27,6 +27,10 @@ const SurveyResult = () => {
             .catch(error => console.error('Error:', error));
     }, []);
 
+    if (!surveyResults) {
+        return <div className='loadingBox'>Loading...</div>;
+    }
+
     return (
         <div className='surveyResultsBox'>
             {surveyResults && surveyResults.map((survey) => {

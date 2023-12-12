@@ -13,9 +13,4 @@ public class ClickvoteApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ClickvoteApplication.class, args);
 	}
-
-	@GetMapping("/")
-	public String hello() {
-		return "Hello World!";
-	}
 }

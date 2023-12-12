@@ -11,13 +11,13 @@ import java.util.List;
 public class Survey {
     @Id
     @SequenceGenerator(
-            name = "petitionSequence",
-            sequenceName = "petitionSequence",
+            name = "surveySequence",
+            sequenceName = "surveySequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "petitionSequence"
+            generator = "surveySequence"
     )
     private Long id;
 

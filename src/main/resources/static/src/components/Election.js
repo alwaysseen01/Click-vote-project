@@ -25,7 +25,7 @@ const Election = () => {
   }, []);
 
   if (!elections) {
-    return <div>Loading...</div>;
+    return <div className='loadingBox'>Loading...</div>;
   }
 
   return (

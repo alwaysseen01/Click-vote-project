@@ -8,13 +8,13 @@ import jakarta.persistence.*;
 public class SurveyOption {
     @Id
     @SequenceGenerator(
-            name = "petitionSequence",
-            sequenceName = "petitionSequence",
+            name = "surveyOptionSequence",
+            sequenceName = "surveyOptionSequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "petitionSequence"
+            generator = "surveyOptionSequence"
     )
     private Long id;
 
