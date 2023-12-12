@@ -4,7 +4,6 @@ import logoImg from "../images/logoPNG.png"
 import profileImg from "../images/profileIconPNG.png"
 import { AuthContext } from '../security/AuthContext'
 import { Link, useLocation } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
 
 function Header(props) {
     const location = useLocation();
@@ -18,8 +17,8 @@ function Header(props) {
         return location.pathname === page;
     };
 
-    if (!isAuthenticated) {
-        return <Navigate to="/login" replace />;
+    if (!isAuthenticated && (location.pathname === '/login' || location.pathname === '/register')) {
+        return null;
     }
 
     return (

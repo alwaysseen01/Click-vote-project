@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +10,7 @@
     margin: 0;
     display: flex;
     flex-direction: column;
+    font-family: 'Comfortaa', sans-serif;
 }
 
 .mainDiv {
