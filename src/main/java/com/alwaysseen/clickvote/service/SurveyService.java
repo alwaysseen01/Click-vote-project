@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,10 +47,16 @@ public class SurveyService {
         }
         List<SurveyOption> options = survey.getOptions();
         SurveyOption winner = options.get(0);
+        boolean isTie = false;
         for (SurveyOption option : options) {
             if (option.getVotesCount() > winner.getVotesCount()) {
                 winner = option;
+            } else if (Objects.equals(option.getVotesCount(), winner.getVotesCount())) {
+                isTie = true;
             }
+        }
+        if (isTie) {
+            return null;
         }
         return winner;
     }

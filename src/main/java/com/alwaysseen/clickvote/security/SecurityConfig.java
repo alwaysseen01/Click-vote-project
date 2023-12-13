@@ -31,7 +31,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authz -> authz
                                 .requestMatchers("auth/login", "auth/token", "auth/register").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/elections/**", "/petitions/**", "/surveys/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/elections/**", "/petitions/**", "/surveys/**", "/election_options/**", "/survey_options/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/elections/**", "/petitions/**", "/surveys/**", "/election_options/**", "/survey_options/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class)

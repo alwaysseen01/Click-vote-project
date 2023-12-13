@@ -33,6 +33,10 @@
     margin-top: 0px;
 }
 
+.election:last-child {
+    margin-bottom: 30px;
+}
+
 .electionTitle {
     margin-bottom: 40px;
 }

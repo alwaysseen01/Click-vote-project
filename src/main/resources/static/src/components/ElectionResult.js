@@ -15,7 +15,8 @@ const ElectionResult = () => {
 
             const winnerPromises = data.map(election => 
                 fetch(`http://localhost:8081/elections/${election.id}/winner`)
-                    .then(response => response.json())
+                    .then(response => response.text())
+                    .then(text => text ? JSON.parse(text) : null)
             );
 
             const percentagePromises = data.map(election => 
@@ -47,28 +48,30 @@ const ElectionResult = () => {
     return (
         <div className='electionsBox'>
             {electionResults && electionResults.map((result) => (
-                <div className='electionResult' key={result.id}>
-                    <h1 className='electionResultTitle'>{result.title}</h1>
-                    {result.options && result.options.map(electionOption => {
-                        let percentage = percentages.find(p => p.optionId === electionOption.id);
-                        return (
-                            <div className={`electonOptionBox ${winner && winner.some(w => w.id === electionOption.id) ? 'winner' : ''}`} key={electionOption.id}>
-                                <h1 className={`electionOptionPercentageBox ${winner && winner.some(w => w.id === electionOption.id) ? 'winner' : ''}`}>{percentage ? Number(percentage.percentage).toFixed(2) : 0}%</h1>
-                                <div className='electionOption'>
-                                    <img className='electionOptionImg' src={electionOption.photoUrl}></img>
-                                    <div className='electionOptionInfoBox'>
-                                        <h1>{electionOption.firstName} {electionOption.lastName}</h1>
-                                        <p className='electionOptionShortDescription'>{electionOption.shortDescription}</p>
-                                    </div>
-                                    <div className='electionOptionButtonsBox'>
-                                        <button className='electionOptionMoreInfoButton'>More info</button>
-                                    </div>
+            <div className='electionResult' key={result.id}>
+                <h1 className='electionResultTitle'>{result.title}</h1>
+                {result.options && result.options.map(electionOption => {
+                    let percentage = percentages.find(p => p.optionId === electionOption.id);
+                    let isWinner = winner && winner.some(w => w && w.id === electionOption.id);
+                    return (
+                        <div className={`electonOptionBox ${isWinner ? 'winner' : ''}`} key={electionOption.id}>
+                            <h1 className={`electionOptionPercentageBox ${isWinner ? 'winner' : ''}`}>{percentage ? Number(percentage.percentage).toFixed(2) : 0}%</h1>
+                            <div className='electionOption'>
+                                <img className='electionOptionImg' src={electionOption.photoUrl}></img>
+                                <div className='electionOptionInfoBox'>
+                                    <h1>{electionOption.firstName} {electionOption.lastName}</h1>
+                                    <p className='electionOptionShortDescription'>{electionOption.shortDescription}</p>
+                                </div>
+                                <div className='electionOptionButtonsBox'>
+                                    <button className='electionOptionMoreInfoButton'>More info</button>
                                 </div>
                             </div>
-                        );
-                    })}
-                </div>
-            ))}
+                        </div>
+                    );
+                })}
+            </div>
+        ))}
+
         </div>
     );    
 };

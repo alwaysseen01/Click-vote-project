@@ -17,7 +17,6 @@
     flex-direction: column;
     overflow-y: auto;
     overflow-x: hidden;
-    margin-bottom: 50px;
 }
 
 .electionResult {
@@ -31,6 +30,10 @@
 
 .electionResult:first-child {
     margin-top: 0px;
+}
+
+.electionResult:last-child {
+    margin-bottom: 30px;
 }
 
 .electionResultTitle {

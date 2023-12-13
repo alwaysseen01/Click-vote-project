@@ -61,7 +61,8 @@
 }
 
 .surveyOptionButton {
-    width: 20vh;
+    max-height: 36px;
+    width: max-content;
     padding: 10px 15px;
     background-color: #0077B6;
     color: #FFFFFF;

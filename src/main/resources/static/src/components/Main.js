@@ -20,19 +20,18 @@ class Main extends React.Component {
     };
 
     render() {
-        console.log("STATE (PAGE): " + this.props.selectedPage);
         let content;
-        if (this.props.selectedPage === 'Main page' && this.state.selectedCategory === 'Elections') {
+        if (window.location.pathname === '/main' && this.state.selectedCategory === 'Elections') {
             content = <Election />;
-        } else if (this.props.selectedPage === 'Main page' && this.state.selectedCategory === 'Petitions') {
+        } else if (window.location.pathname === '/main' && this.state.selectedCategory === 'Petitions') {
             content = <Petition />;
-        } else if (this.props.selectedPage === 'Main page' && this.state.selectedCategory === 'Surveys') {
+        } else if (window.location.pathname === '/main' && this.state.selectedCategory === 'Surveys') {
             content = <Survey />;
-        } else if(this.props.selectedPage === 'Results' && this.state.selectedCategory === 'Elections') {
+        } else if(window.location.pathname === '/results' && this.state.selectedCategory === 'Elections') {
             content = <ElectionResult />;
-        } else if (this.props.selectedPage === 'Results' && this.state.selectedCategory === 'Petitions') {
+        } else if (window.location.pathname === '/results' && this.state.selectedCategory === 'Petitions') {
             content = <PetitionResult />;
-        } else if (this.props.selectedPage === 'Results' && this.state.selectedCategory === 'Surveys') {
+        } else if (window.location.pathname === '/results' && this.state.selectedCategory === 'Surveys') {
             content = <SurveyResult />;
         }
         

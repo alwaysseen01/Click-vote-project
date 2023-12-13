@@ -60,7 +60,7 @@ public class ElectionController {
     }
 
     @PostMapping
-    public void createElection(@RequestBody Election election) {
+    public void createElection(@RequestBody Election election) throws Exception {
         electionService.createElection(election);
     }
 

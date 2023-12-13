@@ -14,12 +14,14 @@ function Header(props) {
     };
 
     const isSelected = (page) => {
+        console.log("CURRENT PATHNAME: " + location.pathname)
         return location.pathname === page;
     };
 
     if (!isAuthenticated && (location.pathname === '/login' || location.pathname === '/register')) {
         return null;
     }
+    
 
     return (
         <header>
@@ -41,6 +43,5 @@ function Header(props) {
         </header>
     );
 }
-
 
 export default Header;

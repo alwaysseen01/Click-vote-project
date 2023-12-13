@@ -49,10 +49,17 @@ public class ElectionService {
         }
         List<ElectionOption> options = election.getOptions();
         ElectionOption winner = options.get(0);
+        boolean isTie = false;
         for (ElectionOption option : options) {
             if (option.getVotesCount() > winner.getVotesCount()) {
                 winner = option;
+                isTie = false;
+            } else if (option.getVotesCount().equals(winner.getVotesCount())) {
+                isTie = true;
             }
+        }
+        if (isTie) {
+            return null;
         }
         return winner;
     }
@@ -78,8 +85,12 @@ public class ElectionService {
     }
 
 
-    public void createElection(Election election) {
-        electionRepository.save(election);
+    public void createElection(Election election) throws Exception {
+        try {
+            electionRepository.save(election);
+        } catch (Exception e) {
+            throw new Exception("Error during saving an election to the DB.");
+        }
     }
 
     public void updateElection(Long id, Election election) {

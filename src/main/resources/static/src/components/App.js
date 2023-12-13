@@ -16,6 +16,10 @@ function ProtectedRoute({ children }) {
         return <Navigate to="/login" replace />;
     }
 
+    if (isAuthenticated) {
+        console.log("SUCCESSFULLY AUTHENTICATED");  
+    }
+
     return children;
 }
 
@@ -26,7 +30,6 @@ class App extends React.Component {
             selectedPage: 'Main page',
         };
     }
-
 
     handlePageChange = (page) => {
         this.setState({ selectedPage: page });
@@ -41,13 +44,13 @@ class App extends React.Component {
                     <ProtectedRoute>
                         <Header onPageChange={this.handlePageChange} />
                         <Routes>
-                            <Route path='/main' element={<Main selectedPage={this.state.selectedPage}/>} />
-                            <Route path='/results' element={<Main selectedPage={this.state.selectedPage}/>} />
-                            <Route path='/aboutUs' element={<Main selectedPage={this.state.selectedPage} />} />
+                            <Route path='/main' element={<Main selectedPage={window.location.pathname}/>} />
+                            <Route path='/results' element={<Main selectedPage={window.location.pathname}/>} />
+                            <Route path='/aboutUs' element={<Main selectedPage={window.location.pathname} />} />
                             <Route path='/register' element={<RegisterForm />} />
                             <Route path='/login' element={<LoginForm />} />
-                            <Route path="/" element={<Navigate to="/main" />}/>
-                            <Route path="*" element={<Navigate to="/main" />}/>
+                            <Route path="/" element={<Navigate to='/main' />}/>
+                            <Route path="*" element={<Navigate to='/main' />}/>
                         </Routes>
                     </ProtectedRoute>
                 </BrowserRouter>
