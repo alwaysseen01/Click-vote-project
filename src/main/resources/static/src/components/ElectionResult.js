@@ -70,8 +70,7 @@ const ElectionResult = () => {
                     );
                 })}
             </div>
-        ))}
-
+            ))}
         </div>
     );    
 };

@@ -17,7 +17,6 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class AuthService<JwtAuthentication> {
-
     private final UserService userService;
     private final Map<String, String> refreshStorage = new HashMap<>();
     private final JwtProvider jwtProvider;
@@ -34,6 +33,16 @@ public class AuthService<JwtAuthentication> {
             return new JwtResponse(accessToken, refreshToken);
         } else {
             throw new AuthException("Wrong password");
+        }
+    }
+
+    public boolean checkTokenValidity(String token, TokenType tokenType) {
+        if (tokenType == TokenType.ACCESS) {
+            return jwtProvider.validateAccessToken(token);
+        } else if (tokenType == TokenType.REFRESH) {
+            return jwtProvider.validateRefreshToken(token);
+        } else {
+            throw new IllegalArgumentException("Unknown token type: " + tokenType);
         }
     }
 
@@ -72,5 +81,4 @@ public class AuthService<JwtAuthentication> {
     public JwtAuthentication getAuthInfo() {
         return (JwtAuthentication) SecurityContextHolder.getContext().getAuthentication();
     }
-
 }

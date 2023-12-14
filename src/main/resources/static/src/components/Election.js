@@ -16,7 +16,7 @@ const Election = () => {
         return response.json();
       })
       .then(data => {
-        console.log("DATA: " + JSON.stringify(data, null, 2))
+        // console.log("DATA: " + JSON.stringify(data, null, 2))
         setElections(data);
       })
       .catch(error => {

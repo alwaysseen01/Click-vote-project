@@ -1,23 +1,52 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Header from "./Header"
 import Main from "./Main"
 import "../css/index.css"
 import { BrowserRouter, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
+import Profile from './Profile';
 import { AuthProvider } from '../security/AuthProvider'
 import { AuthContext } from '../security/AuthContext';
 
 function ProtectedRoute({ children }) {
     const location = useLocation();
-    const { isAuthenticated } = useContext(AuthContext);
+    const { refreshToken, isAuthenticated, setIsAuthenticated, isRefreshing } = useContext(AuthContext);
+  
+    const [token, setToken] = useState(null);
+  
+    useEffect(() => {
+      setToken(localStorage.getItem('accessToken'));
+    }, []);
+  
+    useEffect(() => {
+      if (token) {
+        fetch(`http://localhost:8081/auth/checkToken?token=${token}&tokenType=ACCESS`, {
+          method: 'GET'
+        })
+        .then(response => {
+          if (response.ok) {
+            setIsAuthenticated(true);
+          } else {
+            refreshToken();
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      }
+    }, [token]);
 
-    if (!isAuthenticated && location.pathname !== '/login' && location.pathname !== '/register') {
-        return <Navigate to="/login" replace />;
+    if (!isAuthenticated && !isRefreshing && location.pathname !== '/login' && location.pathname !== '/register') {
+      return <Navigate to="/login" replace />;
     }
 
     if (isAuthenticated) {
-        console.log("SUCCESSFULLY AUTHENTICATED");  
+      console.log("SUCCESSFULLY AUTHENTICATED");  
+    }
+
+    if (isRefreshing) {
+      return <div>Refreshing token...</div>;
     }
 
     return children;
@@ -35,8 +64,6 @@ class App extends React.Component {
         this.setState({ selectedPage: page });
     };
 
-    
-
     render() {
         return (
             <AuthProvider>
@@ -49,6 +76,7 @@ class App extends React.Component {
                             <Route path='/aboutUs' element={<Main selectedPage={window.location.pathname} />} />
                             <Route path='/register' element={<RegisterForm />} />
                             <Route path='/login' element={<LoginForm />} />
+                            <Route path='/profile' element={<Profile />}/>
                             <Route path="/" element={<Navigate to='/main' />}/>
                             <Route path="*" element={<Navigate to='/main' />}/>
                         </Routes>

@@ -14,15 +14,16 @@ const SurveyResult = () => {
 
                 const winnerPromises = data.map(survey => 
                     fetch(`http://localhost:8081/surveys/${survey.id}/winner`)
-                        .then(response => response.json())
+                        .then(response => response.text())
+                        .then(text => text ? JSON.parse(text) : null)
                 );
 
                 Promise.all(winnerPromises)
-                .then(winnersData => {
-                    setWinner(winnersData);
-                    console.log("WINNERS DATA: " + JSON.stringify(winnersData, null, 2))
-                })
-                .catch(error => console.error('Error:', error));
+                    .then(winnersData => {
+                        setWinner(winnersData);
+                        console.log("WINNERS DATA: " + JSON.stringify(winnersData, null, 2))
+                    })
+                    .catch(error => console.error('Error:', error));
             })
             .catch(error => console.error('Error:', error));
     }, []);
@@ -38,11 +39,12 @@ const SurveyResult = () => {
                     <div className='survey' key={survey.id}>
                         <h1 className='surveyTitle'>{survey.title}</h1>
                         <div className='surveyOptionsBox'>
-                            {survey.options && survey.options.map((option) => {
+                            {survey.options && survey.options.map((surveyOption) => {
+                                let isWinner = winner && winner.some(w => w && w.id === surveyOption.id);
                                 return (
-                                    <div className='surveyOption' key={option.id}>
-                                        <h1 className={`surveyOptionVotesBox ${winner && winner.some(w => w.id === option.id) ? 'winner' : ''}`}>{option.votesCount}</h1>
-                                        <h1 className='surveyOptionTitle'>{option.text}</h1>
+                                    <div className='surveyOption' key={surveyOption.id}>
+                                        <h1 className={`surveyOptionVotesBox ${isWinner ? 'winner' : ''}`}>{surveyOption.votesCount}</h1>
+                                        <h1 className='surveyOptionTitle'>{surveyOption.text}</h1>
                                     </div>
                                 )
                             })}

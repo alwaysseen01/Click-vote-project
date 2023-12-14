@@ -29,7 +29,7 @@ public class SurveyController {
     }
 
     @GetMapping("/{id}/winner")
-    public ResponseEntity<Object> getWinner(@PathVariable Long id) {
+    public ResponseEntity<SurveyOption> getWinner(@PathVariable Long id) {
         Survey survey = surveyService.getSurvey(id);
         if (survey == null) {
             return ResponseEntity.notFound().build();

@@ -14,7 +14,7 @@ function Header(props) {
     };
 
     const isSelected = (page) => {
-        console.log("CURRENT PATHNAME: " + location.pathname)
+        // console.log("CURRENT PATHNAME: " + location.pathname)
         return location.pathname === page;
     };
 

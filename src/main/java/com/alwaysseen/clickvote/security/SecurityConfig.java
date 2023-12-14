@@ -30,9 +30,9 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(
                         authz -> authz
-                                .requestMatchers("auth/login", "auth/token", "auth/register").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/elections/**", "/petitions/**", "/surveys/**", "/election_options/**", "/survey_options/**").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/elections/**", "/petitions/**", "/surveys/**", "/election_options/**", "/survey_options/**").permitAll()
+                                .requestMatchers("auth/login", "auth/token", "auth/register", "auth/refresh", "auth/checkToken").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/elections/**", "/petitions/**", "/surveys/**", "/election_options/**", "/survey_options/**", "/users/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/elections/**", "/petitions/**", "/surveys/**", "/election_options/**", "/survey_options/**", "/users/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class)
