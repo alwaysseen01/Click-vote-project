@@ -17,9 +17,6 @@ function ProtectedRoute({ children }) {
   
     useEffect(() => {
       setToken(localStorage.getItem('accessToken'));
-    }, []);
-  
-    useEffect(() => {
       if (token) {
         fetch(`http://localhost:8081/auth/checkToken?token=${token}&tokenType=ACCESS`, {
           method: 'GET'
@@ -34,10 +31,14 @@ function ProtectedRoute({ children }) {
         .catch(error => {
           console.error(error);
         });
+      } else {
+        if (localStorage.getItem('refreshToken')) {
+          refreshToken();
+        }
       }
     }, [token]);
 
-    if (!isAuthenticated && !isRefreshing && location.pathname !== '/login' && location.pathname !== '/register') {
+  if (!isAuthenticated && !isRefreshing && location.pathname !== '/login' && location.pathname !== '/register') {
       return <Navigate to="/login" replace />;
     }
 

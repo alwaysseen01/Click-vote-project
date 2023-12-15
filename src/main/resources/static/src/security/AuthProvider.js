@@ -68,8 +68,9 @@ export function AuthProvider({ children }) {
         const { accessToken, refreshToken } = data;
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-        setIsAuthenticated(true);
 
+        setIsAuthenticated(true);
+        setRedirectTo('/main');
         setIsRefreshing(false);
     }    
 

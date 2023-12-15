@@ -6,9 +6,7 @@ const Election = () => {
   const [elections, setElections] = useState(null);
 
   useEffect(() => {
-    let url = "http://localhost:8081/elections/active"
-    console.log("FETCH URL: " + url);
-    fetch(url)
+    fetch("http://localhost:8081/elections/active")
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

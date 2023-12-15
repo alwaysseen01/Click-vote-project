@@ -10,7 +10,9 @@ const Profile = () => {
             .then(data => {
                 setCurrentUserData(data);
                 // console.log("DATA: " + JSON.stringify(data, null, 2))
-            })
+            }).catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
     }, [])
 
     return (

@@ -9,7 +9,7 @@ const PetitionResult = () => {
         .then(response => response.json())
         .then(data => {
             setPetitionResults(data);
-            console.log("PETITIONS DATA: " + JSON.stringify(data, null, 2))
+            // console.log("PETITIONS DATA: " + JSON.stringify(data, null, 2))
         })
         .catch(error => console.error('Error:', error));
     }, []);

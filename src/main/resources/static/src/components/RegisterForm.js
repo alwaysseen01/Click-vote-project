@@ -44,7 +44,7 @@ const RegisterForm = () => {
                     <input type='text' name='username' placeholder='Imagine your new username/login' required />
                     <input type='password' name='password' placeholder='Imagine your new password' required />
                     <input type='password' name='confirmPassword' placeholder='Repeat your new password' required />
-                    <button type="submit" class="registerButton">Register</button>
+                    <button type="submit" className="registerButton">Register</button>
                 </form>
                 {errorMessage && <p className='registerErrorMessage'>{errorMessage}</p>}
                 <p>Already have an account? <Link to="/login"> <b className='signInText'>Sign in</b> </Link></p>
