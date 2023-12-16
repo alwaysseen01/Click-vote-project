@@ -71,6 +71,12 @@
     transition: all 0.2s ease-in-out;
 }
 
+.surveyOptionButton.blocked {
+    background-color: #CAF0F8;
+    border: 2px solid red;
+    color: red;
+}
+
 .surveyOptionButton:hover {
     cursor: pointer;
     transform: scale(1.05);

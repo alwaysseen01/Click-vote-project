@@ -4,28 +4,72 @@ import "../css/election.css"
 
 const Election = () => {
   const [elections, setElections] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
+    fetch(`http://localhost:8081/users/${localStorage.getItem('currentUserUsername')}`)
+      .then(response => response.json())
+      .then(userData => setCurrentUser(userData))
+      .catch(error => console.error('There has been a problem with your fetch operation:', error));
+  }, []);
+
+  useEffect(() => {
+    if (!currentUser) {
+      return;
+    }
+
     fetch("http://localhost:8081/elections/active")
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
+      .then(response => response.json())
       .then(data => {
         // console.log("DATA: " + JSON.stringify(data, null, 2))
-        setElections(data);
+        const elections = data.map(election => {
+          const updatedElection = { ...election };
+          updatedElection.options = election.options.map(option => ({ ...option, voted: false }));
+          return updatedElection;
+        });
+
+        const promises = elections.map(election =>
+          fetch(`http://localhost:8081/elections/${election.id}/hasVotedBy/${currentUser.id}`)
+            .then(response => response.json())
+            .then(hasVoted => {
+              if (hasVoted) {
+                election.voted = true;
+              } else {
+              }
+            })
+        );
+
+        Promise.all(promises).then(() => setElections(elections));
       })
-      .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-      });
-  }, []);
+      .catch(error => console.error('There has been a problem with your fetch operation:', error));
+  }, [currentUser]);
+
+  const handleVoteClick = (election_id, option_id, user_id) => {
+    fetch(`http://localhost:8081/elections/${election_id}/vote/${option_id}/${user_id}`, { method: 'POST' })
+      .then(() => {
+        const savedVotes = JSON.parse(localStorage.getItem('votes')) || {};
+        if (!savedVotes[user_id]) {
+          savedVotes[user_id] = [];
+        }
+        savedVotes[user_id].push(election_id);
+        localStorage.setItem('votes', JSON.stringify(savedVotes));
+
+        setElections(prevElections =>
+          prevElections.map(election => {
+            if (election.id === election_id) {
+              return { ...election, voted: true };
+            }
+            return election;
+          })
+        );
+      })
+      .catch(error => console.error(error));
+  };
 
   if (!elections) {
     return <div className='loadingBox'>Loading...</div>;
   }
-
+  
   return (
     <div className='electionsBox'>
       {elections.map((election) => (
@@ -46,7 +90,7 @@ const Election = () => {
                 </div>
                 <div className='electionOptionButtonsBox'>
                   <button className='electionOptionMoreInfoButton'>More info</button>
-                  <button className='electionOptionVoteForButton'>Vote for</button>
+                  <button className={`electionOptionVoteForButton ${election.voted ? 'blocked' : ''}`} disabled={electionOption.voted} onClick={() => handleVoteClick(election.id, electionOption.id, currentUser.id)}>{election.voted ? 'VOTED' : 'Vote for'}</button>
                 </div>
               </div>
             ))}

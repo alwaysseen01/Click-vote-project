@@ -18,6 +18,12 @@ public class ElectionOptionService {
         return electionOptionRepository.findAllByElectionId(electionId);
     }
 
+    public void addVote(Long id) {
+        ElectionOption electionOption = electionOptionRepository.getReferenceById(id);
+        electionOption.setVotesCount(electionOption.getVotesCount() + 1);
+        electionOptionRepository.save(electionOption);
+    }
+
     public void createElectionOption(ElectionOption electionOption) {
         electionOptionRepository.save(electionOption);
     }

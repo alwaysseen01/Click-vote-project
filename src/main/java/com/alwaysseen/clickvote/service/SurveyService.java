@@ -1,8 +1,9 @@
 package com.alwaysseen.clickvote.service;
 
-import com.alwaysseen.clickvote.domain.Survey;
-import com.alwaysseen.clickvote.domain.SurveyOption;
+import com.alwaysseen.clickvote.domain.*;
 import com.alwaysseen.clickvote.repository.SurveyRepository;
+import com.alwaysseen.clickvote.repository.UserRepository;
+import com.alwaysseen.clickvote.repository.UserSurveyVoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,12 @@ import java.util.stream.Collectors;
 public class SurveyService {
     @Autowired
     private SurveyRepository surveyRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private SurveyOptionService surveyOptionService;
+    @Autowired
+    private UserSurveyVoteRepository userSurveyVoteRepository;
 
     public Iterable<Survey> getAll() {
         return surveyRepository.findAll();
@@ -59,6 +66,21 @@ public class SurveyService {
             return null;
         }
         return winner;
+    }
+
+    public boolean hasUserVoted(Long survey_id, Long user_id) {
+        return userSurveyVoteRepository.existsUserElectionVoteBySurveyIdAndUserId(survey_id, user_id);
+    }
+
+    public void vote(Long survey_id, Long option_id, Long user_id) {
+        Survey survey = surveyRepository.getReferenceById(survey_id);
+        User user = userRepository.getReferenceById(user_id);
+
+        UserSurveyVote vote = new UserSurveyVote();
+        vote.setSurvey(survey);
+        vote.setUser(user);
+        userSurveyVoteRepository.save(vote);
+        surveyOptionService.addVote(option_id);
     }
 
     public void createSurvey(Survey Petition) {

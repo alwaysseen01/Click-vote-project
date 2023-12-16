@@ -10,7 +10,7 @@ const SurveyResult = () => {
             .then(response => response.json())
             .then(data => {
                 setSurveyResults(data);
-                console.log("SURVEYS DATA: " + JSON.stringify(data, null, 2))
+                // console.log("SURVEYS DATA: " + JSON.stringify(data, null, 2))
 
                 const winnerPromises = data.map(survey => 
                     fetch(`http://localhost:8081/surveys/${survey.id}/winner`)
@@ -21,7 +21,7 @@ const SurveyResult = () => {
                 Promise.all(winnerPromises)
                     .then(winnersData => {
                         setWinner(winnersData);
-                        console.log("WINNERS DATA: " + JSON.stringify(winnersData, null, 2))
+                        // console.log("WINNERS DATA: " + JSON.stringify(winnersData, null, 2))
                     })
                     .catch(error => console.error('Error:', error));
             })

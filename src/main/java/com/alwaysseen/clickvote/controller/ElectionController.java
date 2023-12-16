@@ -2,9 +2,13 @@ package com.alwaysseen.clickvote.controller;
 
 import com.alwaysseen.clickvote.domain.Election;
 import com.alwaysseen.clickvote.domain.ElectionOption;
+import com.alwaysseen.clickvote.domain.User;
 import com.alwaysseen.clickvote.service.ElectionService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,6 +60,20 @@ public class ElectionController {
             return ResponseEntity.ok(results);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+    @GetMapping("/{election_id}/hasVotedBy/{user_id}")
+    public ResponseEntity<?> hasVoted(@PathVariable Long election_id, @PathVariable Long user_id) {
+        boolean hasVoted = electionService.hasUserVoted(election_id, user_id);
+        return new ResponseEntity<>(hasVoted, HttpStatus.OK);
+    }
+
+    @PostMapping("/{election_id}/vote/{option_id}/{user_id}")
+    public void vote(@PathVariable Long election_id, @PathVariable Long option_id, @PathVariable Long user_id) {
+        boolean hasVoted = electionService.hasUserVoted(election_id, user_id);
+        if (!hasVoted) {
+            electionService.vote(election_id, option_id, user_id);
         }
     }
 

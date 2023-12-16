@@ -11,7 +11,7 @@ const ElectionResult = () => {
         .then(response => response.json())
         .then(data => {
             setElectionResults(data);
-            console.log("DATA: " + JSON.stringify(data, null, 2))
+            // console.log("DATA: " + JSON.stringify(data, null, 2))
 
             const winnerPromises = data.map(election => 
                 fetch(`http://localhost:8081/elections/${election.id}/winner`)
@@ -27,14 +27,14 @@ const ElectionResult = () => {
             Promise.all(winnerPromises)
                 .then(winnersData => {
                     setWinner(winnersData);
-                    console.log("WINNERS DATA: " + JSON.stringify(winnersData, null, 2))
+                    // console.log("WINNERS DATA: " + JSON.stringify(winnersData, null, 2))
                 })
                 .catch(error => console.error('Error:', error));
 
             Promise.all(percentagePromises)
                 .then(percentagesData => {
                     setPercentages(percentagesData.flat());
-                    console.log("PERCENTAGES DATA: " + JSON.stringify(percentagesData, null, 2))
+                    // console.log("PERCENTAGES DATA: " + JSON.stringify(percentagesData, null, 2))
                 })
                 .catch(error => console.error('Error:', error));
         })

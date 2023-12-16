@@ -38,13 +38,9 @@ function ProtectedRoute({ children }) {
       }
     }, [token]);
 
-  if (!isAuthenticated && !isRefreshing && location.pathname !== '/login' && location.pathname !== '/register') {
-      return <Navigate to="/login" replace />;
-    }
-
-    if (isAuthenticated) {
-      console.log("SUCCESSFULLY AUTHENTICATED");  
-    }
+    if (!isAuthenticated && !isRefreshing && location.pathname !== '/login' && location.pathname !== '/register') {
+        return <Navigate to="/login" replace />;
+      }
 
     if (isRefreshing) {
       return <div>Refreshing token...</div>;

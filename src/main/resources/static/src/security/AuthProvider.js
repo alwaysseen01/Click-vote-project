@@ -72,6 +72,10 @@ export function AuthProvider({ children }) {
         setIsAuthenticated(true);
         setRedirectTo('/main');
         setIsRefreshing(false);
+
+        if (isAuthenticated) {
+            console.log("SUCCESSFULLY AUTHENTICATED");  
+          }
     }    
 
     return (

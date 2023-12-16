@@ -78,6 +78,12 @@
     transition: all 0.2s ease-in-out;
 }
 
+.petitionOptionVoteForButton.blocked {
+    background-color: #CAF0F8;
+    border: 2px solid red;
+    color: red;
+}
+
 .petitionOptionMoreInfoButton:hover, .petitionOptionVoteForButton:hover {
     cursor: pointer;
     transform: scale(1.05);

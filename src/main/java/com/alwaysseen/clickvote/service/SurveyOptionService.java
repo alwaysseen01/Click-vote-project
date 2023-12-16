@@ -19,6 +19,12 @@ public class SurveyOptionService {
         return surveyOptionRepository.findAllBySurveyId(surveyId);
     }
 
+    public void addVote(Long id) {
+        SurveyOption surveyOption = surveyOptionRepository.getReferenceById(id);
+        surveyOption.setVotesCount(surveyOption.getVotesCount() + 1);
+        surveyOptionRepository.save(surveyOption);
+    }
+
     public void createSurveyOption(SurveyOption surveyOption) {
         surveyOptionRepository.save(surveyOption);
     }
