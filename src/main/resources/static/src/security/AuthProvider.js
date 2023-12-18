@@ -23,7 +23,6 @@ export function AuthProvider({ children }) {
         const { accessToken, refreshToken } = data;
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-        console.log("USERNAME: " + username);
         localStorage.setItem('currentUserUsername', username);
         setIsAuthenticated(true);
         setRedirectTo('/profile');
@@ -46,36 +45,34 @@ export function AuthProvider({ children }) {
     }
     
     async function refreshToken() {
+        console.log("REFRESHING");
         setIsRefreshing(true);
-
+    
         const response = await fetch('http://localhost:8081/auth/refresh', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ refreshToken: localStorage.getItem('refreshToken') }),
+            body: JSON.stringify({ refreshToken: localStorage.getItem('refreshToken')})
         });
-    
-        if (!response.ok) {
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('refreshToken');
-            localStorage.removeItem('currentUserUsername');
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log("DATA: " + JSON.stringify(data, null, 2))
+            const { accessToken, refreshToken } = data;
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('refreshToken', refreshToken);    
+            setIsAuthenticated(true);
+            setIsRefreshing(false);
+            setRedirectTo('/main');
+        } else {
             setIsAuthenticated(false);
-            throw new Error('Error refreshing token.');
+            setIsRefreshing(false);
         }
     
-        const data = await response.json();
-        const { accessToken, refreshToken } = data;
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('refreshToken', refreshToken);
-
-        setIsAuthenticated(true);
-        setRedirectTo('/main');
-        setIsRefreshing(false);
-
         if (isAuthenticated) {
             console.log("SUCCESSFULLY AUTHENTICATED");  
-          }
+        }
     }    
 
     return (
@@ -84,4 +81,3 @@ export function AuthProvider({ children }) {
         </AuthContext.Provider>
     );
 }
-

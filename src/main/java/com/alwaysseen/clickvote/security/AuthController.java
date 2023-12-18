@@ -4,6 +4,7 @@ import com.alwaysseen.clickvote.domain.User;
 import com.alwaysseen.clickvote.service.UserService;
 import jakarta.security.auth.message.AuthException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,9 @@ import java.util.Optional;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
+    @Autowired
     private final AuthService authService;
+    @Autowired
     private final UserService userService;
 
     @PostMapping("/login")

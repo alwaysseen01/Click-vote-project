@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(
                         authz -> authz
-                                .requestMatchers("auth/login", "auth/token", "auth/register", "auth/refresh", "auth/checkToken").permitAll()
+                                .requestMatchers("/auth/**", "/error").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/elections/**", "/elections/{election_id}/vote/{option_id}/{user_id}", "/elections/{election_id}/hasVotedBy/{user_id}", "/petitions/**", "/petitions/{petition_id}/hasVotedBy/{user_id}", "/petitions/{petition_id}/vote/{user_id}", "/surveys/**", "/surveys/{survey_id}/hasVotedBy/{user_id}", "/surveys/{survey_id}/vote/{option_id}/{user_id}", "/election_options/**", "/survey_options/**", "/users/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/elections/**", "/elections/{election_id}/vote/{option_id}/{user_id}", "/elections/{election_id}/hasVotedBy/{user_id}", "/petitions/**", "/petitions/{petition_id}/hasVotedBy/{user_id}", "/petitions/{petition_id}/vote/{user_id}", "/surveys/**", "/surveys/{survey_id}/hasVotedBy/{user_id}", "/surveys/{survey_id}/vote/{option_id}/{user_id}", "/election_options/**", "/survey_options/**", "/users/**").permitAll()
                                 .anyRequest().authenticated()
@@ -39,7 +39,5 @@ public class SecurityConfig {
                 .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-
 }
-
 

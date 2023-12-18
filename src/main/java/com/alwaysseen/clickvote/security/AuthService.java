@@ -46,9 +46,9 @@ public class AuthService<JwtAuthentication> {
         }
     }
 
-    public JwtResponse getAccessToken(@NonNull String refreshToken) throws AuthException {
-        if (jwtProvider.validateRefreshToken(refreshToken)) {
-            final Claims claims = jwtProvider.getRefreshClaims(refreshToken);
+    public JwtResponse getAccessToken(String refreshToken) throws AuthException {
+        if (jwtProvider.validateRefreshToken(String.valueOf(refreshToken))) {
+            final Claims claims = jwtProvider.getRefreshClaims(String.valueOf(refreshToken));
             final String login = claims.getSubject();
             final String saveRefreshToken = refreshStorage.get(login);
             if (saveRefreshToken != null && saveRefreshToken.equals(refreshToken)) {
@@ -61,7 +61,7 @@ public class AuthService<JwtAuthentication> {
         return new JwtResponse(null, null);
     }
 
-    public JwtResponse refresh(@NonNull String refreshToken) throws AuthException {
+    public JwtResponse refresh(String refreshToken) throws AuthException {
         if (jwtProvider.validateRefreshToken(refreshToken)) {
             final Claims claims = jwtProvider.getRefreshClaims(refreshToken);
             final String login = claims.getSubject();
