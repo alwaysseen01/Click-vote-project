@@ -34,3 +34,138 @@ img {
     width: 50px;
     height: 50px;
 }
+
+@media (max-width: 845px) {
+    body {
+        overflow-y: scroll !important;
+    }
+
+    header {
+        padding: 30px 30px 10px 30px;
+        position: sticky;
+        top: 0;
+        background-color: #CAF0F8;
+        z-index: 5;
+    }
+    
+    .logoImg {
+        display: none;
+    }
+
+    nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .headerNavMenuElement {
+        font-size: 1.3rem;
+    }
+
+    .profileBox {
+        height: 46px;
+        width: 46px;
+    }
+
+    .profileImg {
+        height: 46px;
+        width: 46px;
+    }
+
+    main {
+        flex-direction: column;
+        padding: 0px 30px !important;
+        grid-gap: 30px !important;
+        max-height: max-content !important;
+    }
+
+    main aside {
+        height: max-content;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mainNavMenuBox {
+        max-width: max-content !important;
+        padding: 20px 10px !important;
+        width: 100%;
+        flex-direction: row !important;
+    }
+
+    .election {
+        margin-right: 0px !important;
+    }
+
+    .election:last-child {
+        margin-bottom: 0px !important;
+    }
+}
+
+@media (max-width: 670px) {
+    header {
+        padding: 30px 10px;
+    }
+
+    .headerNavMenuElement {
+        font-size: 1em;
+    }
+
+    .profileBox {
+        height: 2.223em;
+        width: 2.223em;
+    }
+
+    .profileImg {
+        height: 2.223em;
+        width: 2.223em;
+    }
+}
+
+@media (max-width: 550px) {
+    header {
+        padding: 20px 20px 0px 20px;
+    }
+    .headerNavMenuElement {
+        height: 50%;
+    }
+
+    .profileBox {
+        height: 6.629vh;
+        width: 6.629vh;
+    }
+
+    .profileImg {
+        height: 6.629vh;
+        width: 6.629vh;
+    }
+
+    main aside {
+        height: max-content;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mainNavMenuBox {
+        padding: 20px 10px !important;
+        width: 100%;
+        flex-direction: column !important;
+    }
+}
+
+@media (max-width: 485px) {
+    header {
+        padding: 30px;
+    }
+
+    .headerNavMenuBox {
+        flex-wrap: wrap;
+    }
+
+    .headerNavMenuBox a:not(:last-child) {
+        flex: 1;
+        flex-basis: 50%;
+    }
+}
