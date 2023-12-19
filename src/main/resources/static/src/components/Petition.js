@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "../css/petition.css"
 
-const Petition = () => {
+const Petition = (props) => {
   const [petitions, setPetitions] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -56,6 +56,14 @@ const Petition = () => {
     return <div className='loadingBox'>Loading...</div>;
   }
 
+  const handleMoreInfoButton = (infoObject) => {
+    props.onPetitionMoreInfoButtonClick();
+    if (localStorage.getItem('petitionInfoObject')) {
+      localStorage.removeItem('petitionInfoObject');
+    }
+    localStorage.setItem('petitionInfoObject', JSON.stringify(infoObject));
+  }
+
   return (
     <div className='petitionsBox'>
       {petitions.map((petition) => (
@@ -64,7 +72,10 @@ const Petition = () => {
           <div className='petitionInfoBox'>
             <p className='petitionShortDescription'> {petition.shortDescription} </p>
             <div className='petitionsButtonsBox'>
-              <button className='petitionOptionMoreInfoButton'>More info</button>
+              <button className='petitionOptionMoreInfoButton' onClick={() => {handleMoreInfoButton({
+                  "petitionTitle": petition.title, 
+                  "petitionLongDescription": petition.longDescription, 
+              })}}>More info</button>
               <button className={`petitionOptionVoteForButton ${petition.voted ? 'blocked' : ''}`} onClick={() => handleVoteClick(petition.id, currentUser.id)}>
                 {petition.voted ? 'VOTED' : 'Vote for'}
               </button>

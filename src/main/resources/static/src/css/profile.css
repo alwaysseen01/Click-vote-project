@@ -1,10 +1,19 @@
 .profilePageBox {
-    width: 100%;
+    width: auto;
     height: 71vh;
     background-color: #CAF0F8;
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: smoothAppearing 1.5s forwards;
+}
+
+@keyframes smoothAppearing {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
 }
 
 .profileBlock {

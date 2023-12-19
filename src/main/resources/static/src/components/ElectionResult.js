@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "../css/electionResult.css"
 
-const ElectionResult = () => {
+const ElectionResult = (props) => {
     const [electionResults, setElectionResults] = useState(null);
     const [winner, setWinner] = useState(null);
     const [percentages, setPercentages] = useState([]);
@@ -45,6 +45,14 @@ const ElectionResult = () => {
         return <div className='loadingBox'>Loading...</div>;
     }
 
+    const handleMoreInfoButton = (infoObject) => {
+        props.onElectionMoreInfoButtonClick();
+        if (localStorage.getItem('electionInfoObject')) {
+          localStorage.removeItem('electionInfoObject');
+        }
+        localStorage.setItem('electionInfoObject', JSON.stringify(infoObject));
+    }
+
     return (
         <div className='electionsBox'>
             {electionResults && electionResults.map((result) => (
@@ -63,7 +71,15 @@ const ElectionResult = () => {
                                     <p className='electionOptionShortDescription'>{electionOption.shortDescription}</p>
                                 </div>
                                 <div className='electionOptionButtonsBox'>
-                                    <button className='electionOptionMoreInfoButton'>More info</button>
+                                    <button className='electionOptionMoreInfoButton' onClick={() => {handleMoreInfoButton({
+                                        "electionTitle": result.title, 
+                                        "electionOptionPhotoUrl": electionOption.photoUrl, 
+                                        "electionOptionFirstName": electionOption.firstName, 
+                                        "electionOptionLastName": electionOption.lastName,
+                                        "electionOptionMiddleName": electionOption.middleName,
+                                        "electionOptionDOB": electionOption.dateOfBirth,
+                                        "electionOptionLongDescription": electionOption.longDescription
+                                    })}}>More info</button>
                                 </div>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "../css/petitionResult.css"
 
-const PetitionResult = () => {
+const PetitionResult = (props) => {
     const [petitionResults, setPetitionResults] = useState(null);
 
     useEffect(() => {
@@ -18,6 +18,14 @@ const PetitionResult = () => {
         return <div className='loadingBox'>Loading...</div>;
     }
 
+    const handleMoreInfoButton = (infoObject) => {
+        props.onPetitionMoreInfoButtonClick();
+        if (localStorage.getItem('petitionInfoObject')) {
+          localStorage.removeItem('petitionInfoObject');
+        }
+        localStorage.setItem('petitionInfoObject', JSON.stringify(infoObject));
+      }
+
     return (
         <div className='petitionsResultBox'>
             {petitionResults && petitionResults.map(petitionResult => (
@@ -28,7 +36,10 @@ const PetitionResult = () => {
                         <p className='petitionResultShortDescription'>{petitionResult.shortDescription}</p>
                     </div>
                     <div className='petitionOptionButtonsBox'>
-                        <button className='petitionOptionMoreInfoButton'>More info</button>
+                        <button className='petitionOptionMoreInfoButton' onClick={() => {handleMoreInfoButton({
+                            "petitionTitle": petitionResult.title, 
+                            "petitionLongDescription": petitionResult.longDescription, 
+                        })}}>More info</button>
                     </div>
                 </div>
             ))}

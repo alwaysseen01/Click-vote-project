@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: smoothAppearing 1s forwards;
 }
 
 .electionsBox {
@@ -18,6 +19,15 @@
     overflow-y: auto;
     overflow-x: hidden;
     margin-bottom: 50px;
+    animation: smoothAppearing 1.5s forwards;
+}
+
+@keyframes smoothAppearing {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
 }
 
 .election {

@@ -6,6 +6,9 @@ import { BrowserRouter, Route, Routes, Navigate, useLocation } from 'react-route
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 import Profile from './Profile';
+import AboutUs from './AboutUs';
+import PetitionInfo from './PetitionInfo';
+import ElectionOptionInfo from './ElectionOptionInfo';
 import { AuthProvider } from '../security/AuthProvider'
 import { AuthContext } from '../security/AuthContext';
 
@@ -57,15 +60,23 @@ function ProtectedRoute({ children }) {
 
 class App extends React.Component {
   constructor(props) {
-      super(props)
-      this.state = {
-          selectedPage: 'Main page',
-      };
+        super(props)
+        this.state = {
+            selectedPage: 'Main page',
+        };
   }
 
   handlePageChange = (page) => {
-      this.setState({ selectedPage: page });
+        this.setState({ selectedPage: page });
   };
+
+  handleElectionMoreInfoButton = () => {
+        window.location.pathname = '/election_option/info';
+  }
+
+  handlePetitionMoreInfoButton = () => {
+        window.location.pathname = '/petition/info';
+  }
 
   render() {
       return (
@@ -74,12 +85,14 @@ class App extends React.Component {
                   <ProtectedRoute>
                       <Header onPageChange={this.handlePageChange} />
                       <Routes>
-                          <Route path='/main' element={<Main selectedPage={window.location.pathname}/>} />
-                          <Route path='/results' element={<Main selectedPage={window.location.pathname}/>} />
-                          <Route path='/aboutUs' element={<Main selectedPage={window.location.pathname} />} />
+                          <Route path='/main' element={<Main selectedPage={window.location.pathname} onElectionMoreInfoButtonClick={this.handleElectionMoreInfoButton} onPetitionMoreInfoButtonClick={this.handlePetitionMoreInfoButton}/>} />
+                          <Route path='/results' element={<Main selectedPage={window.location.pathname} onElectionMoreInfoButtonClick={this.handleElectionMoreInfoButton} onPetitionMoreInfoButtonClick={this.handlePetitionMoreInfoButton}/>}/>} />
                           <Route path='/register' element={<RegisterForm />} />
                           <Route path='/login' element={<LoginForm />} />
                           <Route path='/profile' element={<Profile />}/>
+                          <Route path='/about_us' element={<AboutUs />}/>
+                          <Route path='/election_option/info' element={<ElectionOptionInfo />}/>
+                          <Route path='/petition/info' element={<PetitionInfo />}/>
                           <Route path="/" element={<Navigate to='/main' />}/>
                           <Route path="*" element={<Navigate to='/main' />}/>
                       </Routes>

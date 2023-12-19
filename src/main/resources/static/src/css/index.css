@@ -63,16 +63,6 @@ img {
         font-size: 1.3rem;
     }
 
-    .profileBox {
-        height: 46px;
-        width: 46px;
-    }
-
-    .profileImg {
-        height: 46px;
-        width: 46px;
-    }
-
     main {
         flex-direction: column;
         padding: 0px 30px !important;
@@ -111,34 +101,15 @@ img {
     .headerNavMenuElement {
         font-size: 1em;
     }
-
-    .profileBox {
-        height: 2.223em;
-        width: 2.223em;
-    }
-
-    .profileImg {
-        height: 2.223em;
-        width: 2.223em;
-    }
 }
 
 @media (max-width: 550px) {
     header {
         padding: 20px 20px 0px 20px;
     }
+
     .headerNavMenuElement {
         height: 50%;
-    }
-
-    .profileBox {
-        height: 6.629vh;
-        width: 6.629vh;
-    }
-
-    .profileImg {
-        height: 6.629vh;
-        width: 6.629vh;
     }
 
     main aside {
@@ -167,5 +138,9 @@ img {
     .headerNavMenuBox a:not(:last-child) {
         flex: 1;
         flex-basis: 50%;
+    }
+
+    .profileBox {
+        height: 100%;
     }
 }

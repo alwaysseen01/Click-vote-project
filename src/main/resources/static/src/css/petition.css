@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: smoothAppearing 1s forwards;
 }
 
 .petitionsBox {
@@ -18,17 +19,24 @@
     overflow-y: auto;
     overflow-x: hidden;
     margin-bottom: 50px;
+    animation: smoothAppearing 1.5s forwards;
 }
+
+@keyframes smoothAppearing {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
 
 .petition {
     padding: 20px 20px 20px 20px;
     border-radius: 10px;
-    background-color: #FFFFFF;
-    margin-top: 30px;
-    margin-right: 10px;
-    border: 1px solid #000000;
-    border-radius: 5px;
     background-color: #64b5f6;
+    margin-top: 30px;
+    border: 1px solid #000000;
 }
 
 .petition:first-child {
@@ -40,19 +48,18 @@
 }
 
 .petitionInfoBox {
-    padding: 15px;
-    width: 97.5%;
+    padding: 20px;
     height: max-content;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     gap: 20px;
+    border: 1px solid #000000;
+    border-radius: 5px;
     background-color: #CAF0F8;
-    border-radius: 10px;
 }
 
 .petitionShortDescription {
-    width: 70%;
-    flex: 1;
+    max-width: 400px;
     max-height: 100px;
     overflow: hidden;
 }

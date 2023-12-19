@@ -22,15 +22,15 @@ class Main extends React.Component {
     render() {
         let content;
         if (window.location.pathname === '/main' && this.state.selectedCategory === 'Elections') {
-            content = <Election />;
+            content = <Election onElectionMoreInfoButtonClick={this.props.onElectionMoreInfoButtonClick} />;
         } else if (window.location.pathname === '/main' && this.state.selectedCategory === 'Petitions') {
-            content = <Petition />;
+            content = <Petition onPetitionMoreInfoButtonClick={this.props.onPetitionMoreInfoButtonClick} />;
         } else if (window.location.pathname === '/main' && this.state.selectedCategory === 'Surveys') {
             content = <Survey />;
         } else if(window.location.pathname === '/results' && this.state.selectedCategory === 'Elections') {
-            content = <ElectionResult />;
+            content = <ElectionResult onElectionMoreInfoButtonClick={this.props.onElectionMoreInfoButtonClick} />;
         } else if (window.location.pathname === '/results' && this.state.selectedCategory === 'Petitions') {
-            content = <PetitionResult />;
+            content = <PetitionResult onPetitionMoreInfoButtonClick={this.props.onPetitionMoreInfoButtonClick} />;
         } else if (window.location.pathname === '/results' && this.state.selectedCategory === 'Surveys') {
             content = <SurveyResult />;
         }

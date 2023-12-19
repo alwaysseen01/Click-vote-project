@@ -1,0 +1,30 @@
+.petitionInfoPageBox {
+    width: auto;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 30px 50px 30px;
+}
+
+.petitionInfoTitle {
+    color: #000000;
+    align-self: center;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.petitionLongDescriptionTitle {
+    color: #000000;
+    align-self: center;
+    padding: 0px 10px 7px 10px;
+    border-bottom: 3px solid #000000;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.petitionLongDescriptionText {
+    color: grey;
+    font-size: 1.2rem;
+    align-self: center;
+    margin-top: 50px;
+}

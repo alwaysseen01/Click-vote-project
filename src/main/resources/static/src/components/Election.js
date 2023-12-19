@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import "../css/election.css"
 
 
-const Election = () => {
+const Election = (props) => {
   const [elections, setElections] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -69,6 +69,14 @@ const Election = () => {
   if (!elections) {
     return <div className='loadingBox'>Loading...</div>;
   }
+
+  const handleMoreInfoButton = (infoObject) => {
+    props.onElectionMoreInfoButtonClick();
+    if (localStorage.getItem('electionInfoObject')) {
+      localStorage.removeItem('electionInfoObject');
+    }
+    localStorage.setItem('electionInfoObject', JSON.stringify(infoObject));
+  }
   
   return (
     <div className='electionsBox'>
@@ -89,7 +97,15 @@ const Election = () => {
                   </p>
                 </div>
                 <div className='electionOptionButtonsBox'>
-                  <button className='electionOptionMoreInfoButton'>More info</button>
+                  <button className='electionOptionMoreInfoButton' onClick={() => {handleMoreInfoButton({
+                      "electionTitle": election.title, 
+                      "electionOptionPhotoUrl": electionOption.photoUrl, 
+                      "electionOptionFirstName": electionOption.firstName, 
+                      "electionOptionLastName": electionOption.lastName,
+                      "electionOptionMiddleName": electionOption.middleName,
+                      "electionOptionDOB": electionOption.dateOfBirth,
+                      "electionOptionLongDescription": electionOption.longDescription
+                    })}}>More info</button>
                   <button className={`electionOptionVoteForButton ${election.voted ? 'blocked' : ''}`} disabled={electionOption.voted} onClick={() => handleVoteClick(election.id, electionOption.id, currentUser.id)}>{election.voted ? 'VOTED' : 'Vote for'}</button>
                 </div>
               </div>

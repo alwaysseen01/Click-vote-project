@@ -1,0 +1,73 @@
+.aboutUsPageBox {
+    width: auto;
+    height: max-content !important;
+    padding: 0px 70px 20px 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: smoothAppearing 1.5s forwards;
+    opacity: 0;
+    padding-bottom: 50px;
+}
+
+@keyframes smoothAppearing {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+.questionTitleLeft {
+    width: 100%;
+    color: #000000;
+    margin-top: 20px;
+    align-self: flex-start;
+}
+
+.questionTextLeft {
+    max-width: 50%;
+    color: #000000;
+    font-size: 18px;
+    border-left: 5px solid black;
+    padding: 5px 20px;
+    margin-top: 20px;
+    align-self: flex-start;
+}
+
+.questionTitleRight {
+    width: 100%;
+    color: #000000;
+    margin-top: 20px;
+    text-align: end;
+}
+
+.questionTextRight {
+    max-width: 50%;
+    color: #000000;
+    font-size: 18px;
+    border-right: 5px solid black;
+    padding: 5px 20px;
+    margin-top: 20px;
+    align-self: flex-end;
+    text-align: end;
+}
+
+.adressesTable {
+    height: max-content;
+    color: #000000;
+    padding: 2.5px;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.adressesTable th {
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.adressesTable td {
+    border: 1px solid grey;
+    padding: 10px;
+}
