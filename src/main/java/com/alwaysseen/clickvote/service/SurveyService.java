@@ -58,6 +58,7 @@ public class SurveyService {
         for (SurveyOption option : options) {
             if (option.getVotesCount() > winner.getVotesCount()) {
                 winner = option;
+                isTie = false;
             } else if (Objects.equals(option.getVotesCount(), winner.getVotesCount())) {
                 isTie = true;
             }

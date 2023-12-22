@@ -21,7 +21,7 @@ const SurveyResult = () => {
                 Promise.all(winnerPromises)
                     .then(winnersData => {
                         setWinner(winnersData);
-                        // console.log("WINNERS DATA: " + JSON.stringify(winnersData, null, 2))
+                        console.log("WINNERS DATA: " + JSON.stringify(winnersData, null, 2))
                     })
                     .catch(error => console.error('Error:', error));
             })
