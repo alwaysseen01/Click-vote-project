@@ -43,12 +43,12 @@ public class PetitionController {
     }
 
     @PostMapping
-    public void createElection(@RequestBody Petition election) {
-        petitionService.createPetition(election);
+    public void createPetition(@RequestBody Petition petition) {
+        petitionService.createPetition(petition);
     }
 
     @PutMapping("/{id}")
-    public void updateElection(@PathVariable Long id, @RequestBody Petition petition) {
+    public void updatePetition(@PathVariable Long id, @RequestBody Petition petition) {
         petitionService.updatePetition(id, petition);
     }
 }
