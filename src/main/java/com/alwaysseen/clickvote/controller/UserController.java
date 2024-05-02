@@ -18,7 +18,7 @@ public class UserController {
         return userService.getByUsername(username);
     }
 
-    @PostMapping
+    @PostMapping(path="/")
     public void createUser(@RequestBody User user) throws Exception {
         userService.saveUser(user);
     }
