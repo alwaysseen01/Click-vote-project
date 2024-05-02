@@ -12,6 +12,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -31,7 +38,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(
                         authz -> authz
-                                .requestMatchers("/auth/**", "/error").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/auth/login/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/elections/**", "/elections/{election_id}/vote/{option_id}/{user_id}", "/elections/{election_id}/hasVotedBy/{user_id}", "/petitions/**", "/petitions/{petition_id}/hasVotedBy/{user_id}", "/petitions/{petition_id}/vote/{user_id}", "/surveys/**", "/surveys/{survey_id}/hasVotedBy/{user_id}", "/surveys/{survey_id}/vote/{option_id}/{user_id}", "/election_options/**", "/survey_options/**", "/users/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/elections/**", "/elections/{election_id}/vote/{option_id}/{user_id}", "/elections/{election_id}/hasVotedBy/{user_id}", "/petitions/**", "/petitions/{petition_id}/hasVotedBy/{user_id}", "/petitions/{petition_id}/vote/{user_id}", "/surveys/**", "/surveys/{survey_id}/hasVotedBy/{user_id}", "/surveys/{survey_id}/vote/{option_id}/{user_id}", "/election_options/**", "/survey_options/**", "/users/**").permitAll()
                                 .anyRequest().authenticated()
