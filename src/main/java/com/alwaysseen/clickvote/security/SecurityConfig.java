@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authz -> authz
                                 .requestMatchers(HttpMethod.POST, "/auth/login/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/auth/register/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/elections/**", "/elections/{election_id}/vote/{option_id}/{user_id}", "/elections/{election_id}/hasVotedBy/{user_id}", "/petitions/**", "/petitions/{petition_id}/hasVotedBy/{user_id}", "/petitions/{petition_id}/vote/{user_id}", "/surveys/**", "/surveys/{survey_id}/hasVotedBy/{user_id}", "/surveys/{survey_id}/vote/{option_id}/{user_id}", "/election_options/**", "/survey_options/**", "/users/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/elections/**", "/elections/{election_id}/vote/{option_id}/{user_id}", "/elections/{election_id}/hasVotedBy/{user_id}", "/petitions/**", "/petitions/{petition_id}/hasVotedBy/{user_id}", "/petitions/{petition_id}/vote/{user_id}", "/surveys/**", "/surveys/{survey_id}/hasVotedBy/{user_id}", "/surveys/{survey_id}/vote/{option_id}/{user_id}", "/election_options/**", "/survey_options/**", "/users/**").permitAll()
                                 .anyRequest().authenticated()
